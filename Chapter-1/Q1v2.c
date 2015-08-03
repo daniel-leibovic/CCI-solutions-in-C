@@ -1,4 +1,5 @@
 //Using a bit array:
+//(see Q1.c for less space efficient method, with an array)
 
 #include <stdio.h>
  
