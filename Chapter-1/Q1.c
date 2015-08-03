@@ -1,35 +1,30 @@
-//Using a bit array:
-
+//Using an array
 #include <stdio.h>
  
-void isUnique(char* string)
+int isUnique(char* string)
 {
-	int bitArray = 0;
-	char val, i, c;
-	//char val, i, c;
+	//create array representing each of 256 possible ASCII chars, initialize all to 0
+	int ASCII[256] = {0};
+	int i;
+	char c;
+	
+	//place each char in your string into its unique place in ASCII array
+	//could optimize space by making ASCII array value type boolean
 	for(i = 0; c = string[i]; i++) {
-		//this gives the 0 - 26 value of the lowercase character
-		val = c - 'a';
+		printf("decimal value of %c: %d \n", c, c);
 		
-		//compares existing 32-bit bitArray to a 32-bit array of 0s, with the *val*th position set to 1
-		//if any of the 32 columns between the two rows share a '1' value, there is collision
-		if(bitArray & (1 << val)) {
-			printf("%s is not unique, collision on %c, at bitArray[%d].\n", string, c, val);
+		//this character has been encountered before, and placed in ASCII array
+		if(ASCII[c]) {
+			printf("not unique!, ASCII[%d] = %d", c, c);
 			return;
 		}
 		
-		//sets the bitArray[val] value to 1, indicating that the *val* character has been touched
-		printf("printing 1 at bitArray[%d]", val);
-		bitArray |= (1 << val);
-		printf(", bitArray = %d \n", bitArray);
+		//set ASCII array value to char value
+		ASCII[c] = c;
 	}
-	
 	printf("unique!");
- 
 }
- 
 int main(void) {
-	//set your string here
-	isUnique("hello");
+	isUnique("0hello");
 	return 0;
 }
