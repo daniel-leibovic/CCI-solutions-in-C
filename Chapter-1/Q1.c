@@ -1,4 +1,6 @@
-//Using an array
+//Using an array:
+//See Q1v2.c for a space efficient version using bit-array
+
 #include <stdio.h>
  
 int isUnique(char* string)
