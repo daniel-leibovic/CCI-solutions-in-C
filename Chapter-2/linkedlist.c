@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "linkedlist.h"
+#include "time.h"
+#include "math.h"
 
 void push(struct node **headRef, int data)
 {
@@ -17,8 +19,38 @@ void push(struct node **headRef, int data)
 	*headRef = newNode;
 }
 
+int pop(struct node**headRef)
+{
+	int retVal = (*headRef)->data;
+	struct node *temp = *headRef;
+	*headRef = (*headRef)->next;
+	free(temp);
+	return retVal;
+}
+
+void setListValuesUnder(struct node *head, int max)
+{
+	while(head != NULL)
+	{
+		head->data = rand() % max;
+		head = head->next;
+	}
+	
+}
+int findLengthLinkedList(struct node *head)
+{
+	int len = 0;
+	while(head != NULL)
+	{
+		len++;
+		head = head->next;
+	}
+	return len;
+}
+
 struct node* createSingleLinkedList(int len)
 {
+	srand(time(NULL));
 	if(len == 0)
 		return NULL;
 
@@ -26,7 +58,7 @@ struct node* createSingleLinkedList(int len)
 
 	for(int i = 0; i < len; i++)
 	{
-		push(&head, len-i-1);
+		push(&head, rand() % 1000);
 	}
 	return head;
 }

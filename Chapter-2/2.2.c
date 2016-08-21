@@ -18,11 +18,16 @@ int kthToLast(struct node *head, int k)
 
 int main(int argc, char *argv[])
 {
-	int k = atoi(argv[1]);
-	int len = 100;
-	if(argc != 2 || k > len - 1 )
+	if(argc != 2)
 	{
 		printf("usage: %s (int less than 100)k\n", argv[0]);
+		return 1;
+	}
+	int len = 100;
+	int k = atoi(argv[1]);
+	if(k > len - 1)
+	{
+		printf("k must be less than 100\n");
 		return 1;
 	}
 	struct node *head = createSingleLinkedList(100);
